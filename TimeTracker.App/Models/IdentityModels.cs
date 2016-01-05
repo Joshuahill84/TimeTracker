@@ -1,6 +1,9 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -20,6 +23,7 @@ namespace TimeTracker.App.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -29,5 +33,28 @@ namespace TimeTracker.App.Models
         {
             return new ApplicationDbContext();
         }
+
+        public override int SaveChanges()
+        {
+            var entities = ChangeTracker.Entries().Where(x => x.Entity is IEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
+
+            var currentUsername = HttpContext.Current?.User?.Identity.Name?? "Anonymous";
+
+            foreach (var entity in entities)
+            {
+                if (entity.State == EntityState.Added)
+                {
+                    ((IEntity)entity.Entity).CreatedOn = DateTime.Now;
+                    ((IEntity)entity.Entity).CreatedBy = currentUsername;
+                }
+
+                ((IEntity)entity.Entity).ModifiedOn = DateTime.Now;
+                ((IEntity)entity.Entity).ModifiedBy = currentUsername;
+            }
+
+            return base.SaveChanges();
+        }
+
+        public System.Data.Entity.DbSet<TimeTracker.App.Models.Employee> Employees { get; set; }
     }
 }
