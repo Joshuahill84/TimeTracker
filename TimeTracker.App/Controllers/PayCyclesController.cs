@@ -10,126 +10,107 @@ using TimeTracker.App.Models;
 
 namespace TimeTracker.App.Controllers
 {
-    [Authorize]
-    public class EmployeesController : Controller
+    public class PayCyclesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Employees
+        // GET: PayCycles
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            return View(db.PayCycles.ToList());
         }
 
-        // GET: Employees/Details/5
+        // GET: PayCycles/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            PayCycle payCycle = db.PayCycles.Find(id);
+            if (payCycle == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(payCycle);
         }
 
-        // GET: Employees/Create
+        // GET: PayCycles/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Employees/Create
+        // POST: PayCycles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeNumber,FirstName,LastName")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,Name,CreatedBy,CreatedOn,ModifiedBy,ModifiedOn")] PayCycle payCycle)
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(employee);
+                db.PayCycles.Add(payCycle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(employee);
+            return View(payCycle);
         }
 
-        // GET: Employees/Edit/5
+        // GET: PayCycles/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-
-            if (employee == null)
+            PayCycle payCycle = db.PayCycles.Find(id);
+            if (payCycle == null)
             {
                 return HttpNotFound();
             }
-
-            var model = new EmployeeEditVM
-            {
-                SelectedTeamId = employee.MemberOf?.Id ?? 0,
-                Id = employee.Id,
-                FirstName = employee.FirstName,
-                LastName = employee.LastName,
-                EmployeeNumber = employee.EmployeeNumber,
-                AvailableTeams = new SelectList(db.Teams.ToList(), "Id", "Name")
-            };
-
-            return View(model);
+            return View(payCycle);
         }
 
-        // POST: Employees/Edit/5
+        // POST: PayCycles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EmployeeEditVM model)
+        public ActionResult Edit([Bind(Include = "Id,Name,CreatedBy,CreatedOn,ModifiedBy,ModifiedOn")] PayCycle payCycle)
         {
             if (ModelState.IsValid)
             {
-                var employee = db.Employees.Find(model.Id);
-                employee.FirstName = model.FirstName;
-                employee.LastName = model.LastName;
-                employee.EmployeeNumber = model.EmployeeNumber;
-                employee.MemberOf = db.Teams.Find(model.SelectedTeamId);
-
+                db.Entry(payCycle).State = EntityState.Modified;
                 db.SaveChanges();
-
                 return RedirectToAction("Index");
             }
-            return View(model);
+            return View(payCycle);
         }
 
-        // GET: Employees/Delete/5
+        // GET: PayCycles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            PayCycle payCycle = db.PayCycles.Find(id);
+            if (payCycle == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(payCycle);
         }
 
-        // POST: Employees/Delete/5
+        // POST: PayCycles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
+            PayCycle payCycle = db.PayCycles.Find(id);
+            db.PayCycles.Remove(payCycle);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

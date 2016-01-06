@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace TimeTracker.App.Models
 {
-
     public class Employee : Entity
     {
         public string EmployeeNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public virtual ICollection<Team> MemberOf { get; set; }
+        public virtual Team MemberOf { get; set; }
         public virtual ICollection<TimeEntry> TimeEntries { get; set; }
     }
 

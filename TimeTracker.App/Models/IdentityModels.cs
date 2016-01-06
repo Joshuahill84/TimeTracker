@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
@@ -6,12 +8,19 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using TimeTracker.App.Controllers;
 
 namespace TimeTracker.App.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser()
+        {
+        }
+
+        public virtual ICollection<Team> OwnerOf { get; set; } = new Collection<Team>();
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -56,5 +65,13 @@ namespace TimeTracker.App.Models
         }
 
         public System.Data.Entity.DbSet<TimeTracker.App.Models.Employee> Employees { get; set; }
+
+        public System.Data.Entity.DbSet<TimeTracker.App.Models.Team> Teams { get; set; }
+
+        public System.Data.Entity.DbSet<TimeTracker.App.Models.Shift> Shifts { get; set; }
+
+        public System.Data.Entity.DbSet<TimeTracker.App.Models.PayCycle> PayCycles { get; set; }
+
+        public System.Data.Entity.DbSet<TimeTracker.App.Models.Position> Positions { get; set; }
     }
 }

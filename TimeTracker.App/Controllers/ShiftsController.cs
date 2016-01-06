@@ -10,126 +10,107 @@ using TimeTracker.App.Models;
 
 namespace TimeTracker.App.Controllers
 {
-    [Authorize]
-    public class EmployeesController : Controller
+    public class ShiftsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Employees
+        // GET: Shifts
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            return View(db.Shifts.ToList());
         }
 
-        // GET: Employees/Details/5
+        // GET: Shifts/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            Shift shift = db.Shifts.Find(id);
+            if (shift == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(shift);
         }
 
-        // GET: Employees/Create
+        // GET: Shifts/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Employees/Create
+        // POST: Shifts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeNumber,FirstName,LastName")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,Name,CreatedBy,CreatedOn,ModifiedBy,ModifiedOn")] Shift shift)
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(employee);
+                db.Shifts.Add(shift);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(employee);
+            return View(shift);
         }
 
-        // GET: Employees/Edit/5
+        // GET: Shifts/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-
-            if (employee == null)
+            Shift shift = db.Shifts.Find(id);
+            if (shift == null)
             {
                 return HttpNotFound();
             }
-
-            var model = new EmployeeEditVM
-            {
-                SelectedTeamId = employee.MemberOf?.Id ?? 0,
-                Id = employee.Id,
-                FirstName = employee.FirstName,
-                LastName = employee.LastName,
-                EmployeeNumber = employee.EmployeeNumber,
-                AvailableTeams = new SelectList(db.Teams.ToList(), "Id", "Name")
-            };
-
-            return View(model);
+            return View(shift);
         }
 
-        // POST: Employees/Edit/5
+        // POST: Shifts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EmployeeEditVM model)
+        public ActionResult Edit([Bind(Include = "Id,Name,CreatedBy,CreatedOn,ModifiedBy,ModifiedOn")] Shift shift)
         {
             if (ModelState.IsValid)
             {
-                var employee = db.Employees.Find(model.Id);
-                employee.FirstName = model.FirstName;
-                employee.LastName = model.LastName;
-                employee.EmployeeNumber = model.EmployeeNumber;
-                employee.MemberOf = db.Teams.Find(model.SelectedTeamId);
-
+                db.Entry(shift).State = EntityState.Modified;
                 db.SaveChanges();
-
                 return RedirectToAction("Index");
             }
-            return View(model);
+            return View(shift);
         }
 
-        // GET: Employees/Delete/5
+        // GET: Shifts/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            Shift shift = db.Shifts.Find(id);
+            if (shift == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(shift);
         }
 
-        // POST: Employees/Delete/5
+        // POST: Shifts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
+            Shift shift = db.Shifts.Find(id);
+            db.Shifts.Remove(shift);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

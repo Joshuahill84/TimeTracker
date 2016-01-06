@@ -10,126 +10,107 @@ using TimeTracker.App.Models;
 
 namespace TimeTracker.App.Controllers
 {
-    [Authorize]
-    public class EmployeesController : Controller
+    public class PositionsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Employees
+        // GET: Positions
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            return View(db.Positions.ToList());
         }
 
-        // GET: Employees/Details/5
+        // GET: Positions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            Position position = db.Positions.Find(id);
+            if (position == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(position);
         }
 
-        // GET: Employees/Create
+        // GET: Positions/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Employees/Create
+        // POST: Positions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeNumber,FirstName,LastName")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,Name,CreatedBy,CreatedOn,ModifiedBy,ModifiedOn")] Position position)
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(employee);
+                db.Positions.Add(position);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(employee);
+            return View(position);
         }
 
-        // GET: Employees/Edit/5
+        // GET: Positions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-
-            if (employee == null)
+            Position position = db.Positions.Find(id);
+            if (position == null)
             {
                 return HttpNotFound();
             }
-
-            var model = new EmployeeEditVM
-            {
-                SelectedTeamId = employee.MemberOf?.Id ?? 0,
-                Id = employee.Id,
-                FirstName = employee.FirstName,
-                LastName = employee.LastName,
-                EmployeeNumber = employee.EmployeeNumber,
-                AvailableTeams = new SelectList(db.Teams.ToList(), "Id", "Name")
-            };
-
-            return View(model);
+            return View(position);
         }
 
-        // POST: Employees/Edit/5
+        // POST: Positions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EmployeeEditVM model)
+        public ActionResult Edit([Bind(Include = "Id,Name,CreatedBy,CreatedOn,ModifiedBy,ModifiedOn")] Position position)
         {
             if (ModelState.IsValid)
             {
-                var employee = db.Employees.Find(model.Id);
-                employee.FirstName = model.FirstName;
-                employee.LastName = model.LastName;
-                employee.EmployeeNumber = model.EmployeeNumber;
-                employee.MemberOf = db.Teams.Find(model.SelectedTeamId);
-
+                db.Entry(position).State = EntityState.Modified;
                 db.SaveChanges();
-
                 return RedirectToAction("Index");
             }
-            return View(model);
+            return View(position);
         }
 
-        // GET: Employees/Delete/5
+        // GET: Positions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            Position position = db.Positions.Find(id);
+            if (position == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(position);
         }
 
-        // POST: Employees/Delete/5
+        // POST: Positions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
+            Position position = db.Positions.Find(id);
+            db.Positions.Remove(position);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

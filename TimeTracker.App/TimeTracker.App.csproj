@@ -209,6 +209,10 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PayCyclesController.cs" />
+    <Compile Include="Controllers\PositionsController.cs" />
+    <Compile Include="Controllers\ShiftsController.cs" />
+    <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -224,8 +228,17 @@
     <Compile Include="Migrations\201601052220385_update one.Designer.cs">
       <DependentUpon>201601052220385_update one.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601061815304_EmployeeTeamMemberOf.cs" />
+    <Compile Include="Migrations\201601061815304_EmployeeTeamMemberOf.Designer.cs">
+      <DependentUpon>201601061815304_EmployeeTeamMemberOf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601062037440_shiftsview.cs" />
+    <Compile Include="Migrations\201601062037440_shiftsview.Designer.cs">
+      <DependentUpon>201601062037440_shiftsview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EmployeeEditVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -298,6 +311,27 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Teams\Index.cshtml" />
+    <Content Include="Views\Teams\Create.cshtml" />
+    <Content Include="Views\Teams\View.cshtml" />
+    <Content Include="Views\Teams\Delete.cshtml" />
+    <Content Include="Views\Teams\Details.cshtml" />
+    <Content Include="Views\Teams\Edit.cshtml" />
+    <Content Include="Views\Shifts\Create.cshtml" />
+    <Content Include="Views\Shifts\Delete.cshtml" />
+    <Content Include="Views\Shifts\Details.cshtml" />
+    <Content Include="Views\Shifts\Edit.cshtml" />
+    <Content Include="Views\Shifts\Index.cshtml" />
+    <Content Include="Views\PayCycles\Create.cshtml" />
+    <Content Include="Views\PayCycles\Delete.cshtml" />
+    <Content Include="Views\PayCycles\Details.cshtml" />
+    <Content Include="Views\PayCycles\Edit.cshtml" />
+    <Content Include="Views\PayCycles\Index.cshtml" />
+    <Content Include="Views\Positions\Create.cshtml" />
+    <Content Include="Views\Positions\Delete.cshtml" />
+    <Content Include="Views\Positions\Details.cshtml" />
+    <Content Include="Views\Positions\Edit.cshtml" />
+    <Content Include="Views\Positions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,6 +353,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601052220385_update one.resx">
       <DependentUpon>201601052220385_update one.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601061815304_EmployeeTeamMemberOf.resx">
+      <DependentUpon>201601061815304_EmployeeTeamMemberOf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601062037440_shiftsview.resx">
+      <DependentUpon>201601062037440_shiftsview.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
