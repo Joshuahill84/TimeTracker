@@ -17,13 +17,9 @@ namespace TimeTracker.App.Models
     public class Entity : IEntity
     {
         public int Id { get; set; }
-        [ScaffoldColumn(false)]
         public string CreatedBy { get; set; }
-        [ScaffoldColumn(false)]
         public DateTime CreatedOn { get; set; }
-        [ScaffoldColumn(false)]
         public string ModifiedBy { get; set; }
-        [ScaffoldColumn(false)]
         public DateTime ModifiedOn { get; set; }
     }
 }

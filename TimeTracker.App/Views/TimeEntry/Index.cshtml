@@ -1,0 +1,36 @@
+﻿@model TimeTracker.App.Models.TimeEntryIndexVM
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@Model.TeamName - @Model.ShiftName for @Model.Date.ToShortDateString()</h2>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Check In</th>
+        <th>Check Out</th>
+    </tr>
+    <tbody>
+        @foreach (var person in Model.TeamMembers)
+        {
+            <tr>
+                <td>@person.FullName</td>
+                <td>
+                    <select id="CheckInStatus">
+                        <option value="1">Early</option>
+                        <option value="2">On Time</option>
+                        <option value="3">Late</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="CheckOutStatus">
+                        <option value="1">Early</option>
+                        <option value="2">On Time</option>
+                        <option value="3">Late</option>
+                    </select>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
