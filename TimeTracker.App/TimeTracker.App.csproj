@@ -227,6 +227,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PayCyclesController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ShiftsController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\TimeEntryController.cs" />
@@ -352,7 +353,7 @@
     <Content Include="Views\Positions\Edit.cshtml" />
     <Content Include="Views\Positions\Index.cshtml" />
     <Content Include="Views\TimeEntry\Index.cshtml" />
-    <Content Include="Views\ReportPTO.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
