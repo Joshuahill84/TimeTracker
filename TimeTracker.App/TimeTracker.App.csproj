@@ -254,6 +254,10 @@
     <Compile Include="Migrations\201601062037440_shiftsview.Designer.cs">
       <DependentUpon>201601062037440_shiftsview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601082144568_timeentry.cs" />
+    <Compile Include="Migrations\201601082144568_timeentry.Designer.cs">
+      <DependentUpon>201601082144568_timeentry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EmployeeEditVM.cs" />
@@ -381,6 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601062037440_shiftsview.resx">
       <DependentUpon>201601062037440_shiftsview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601082144568_timeentry.resx">
+      <DependentUpon>201601082144568_timeentry.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

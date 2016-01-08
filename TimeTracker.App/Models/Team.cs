@@ -28,6 +28,8 @@ namespace TimeTracker.App.Models
         public virtual Employee Employee { get; set; }
         public virtual Shift Shift { get; set; }
 
+        public DateTime Day { get; set; }
+
         public TimeClockStatus CheckInStatus { get; set; }
         public TimeClockStatus CheckOutStatus { get; set; }
 
