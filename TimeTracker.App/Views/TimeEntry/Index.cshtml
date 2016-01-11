@@ -12,28 +12,28 @@
         <th>Check Out</th>
     </tr>
     <tbody>
-        @foreach (var person in Model.TeamMembers)
-        {
-            <tr>
-                <td>@person.FullName</td>
-                <td>
-                    <select id="CheckInStatus">
-                        <option value="1">Early</option>
-                        <option value="2">On Time</option>
-                        <option value="3">Late</option>
-                    </select>
-                </td>
-                <td>
-                    <select id="CheckOutStatus">
-                        <option value="1">Early</option>
-                        <option value="2">On Time</option>
-                        <option value="3">Late</option>
-                    </select>
-                </td>
-                <td>
-                    <button>Save</button>
-                </td>
-            </tr>
-        }
+    @foreach (var person in Model.TeamMembers)
+    {
+        <tr>
+            <td>@person.FullName</td>
+            <td>
+                <select id="CheckInStatus">
+                    <option value="1">Early</option>
+                    <option value="2">On Time</option>
+                    <option value="3">Late</option>
+                </select>
+            </td>
+            <td>
+                <select id="CheckOutStatus">
+                    <option value="1">Early</option>
+                    <option value="2">On Time</option>
+                    <option value="3">Late</option>
+                </select>
+            </td>
+            <td>
+                <button>Save</button>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
