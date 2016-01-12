@@ -9,24 +9,24 @@
         <div class="card card-block">
             <h3 class="card-title">Create a Team</h3>
             <p class="card-text">create your team of employee's here</p>
-            <a href="#" class="btn btn-primary">Create</a>
+            @Html.ActionLink("Create", "Create","Teams", null, new { @class="btn btn-primary"})
         </div>
     </div>
     <div class="col-sm-4">
         <div class="card card-block">
             <h3 class="card-title">Track your Team</h3>
             <p class="card-text">update team schedual here</p>
-            <a href="#" class="btn btn-primary">Track</a>
+            @Html.ActionLink("Create", "Create", "Teams", null, new { @class = "btn btn-primary" })
         </div>
     </div>
     <div class="col-sm-4">
         <div class="card card-block">
             <h3 class="card-title">Lookup Report Data</h3>
             <p class="card-text">overview current team stats on schedual</p>
-            <a href="#" class="btn btn-primary">Report</a>
+            @Html.ActionLink("Create", "Create", "Reports", null, new { @class = "btn btn-primary" })
         </div>
     </div>
 </div>
 
 
-<hr/>
+<hr />

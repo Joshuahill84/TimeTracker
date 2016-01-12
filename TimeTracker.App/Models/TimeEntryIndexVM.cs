@@ -19,5 +19,6 @@ namespace TimeTracker.App.Models
         public string FullName { get; set; }
         public TimeClockStatus CheckInTimeStatus { get; set; }
         public TimeClockStatus CheckOutTimeStatus { get; set; }
+        public int Id { get; set; }
     }
 }

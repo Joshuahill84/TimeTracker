@@ -32,12 +32,19 @@ namespace TimeTracker.App.Controllers
                     CheckInTimeStatus = TimeClockStatus.UnKnown,
                     CheckOutTimeStatus = TimeClockStatus.Early,
                     FullName = $"{e.FirstName} {e.LastName}",
-
+                    Id = e.Id,
                 });
 
             }
 
             return View(model);
+        }
+
+        public ActionResult EmployeeEntry(int employeeid, int shiftid, DateTime date)
+        {
+
+
+            return View();
         }
     }
 }
