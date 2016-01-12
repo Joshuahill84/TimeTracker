@@ -29,8 +29,6 @@ namespace TimeTracker.App.Controllers
             {
                 model.TeamMembers.Add(new TeamMemberVM()
                 {
-                    CheckInTimeStatus = TimeClockStatus.UnKnown,
-                    CheckOutTimeStatus = TimeClockStatus.Early,
                     FullName = $"{e.FirstName} {e.LastName}",
                     Id = e.Id,
                 });
@@ -39,12 +37,25 @@ namespace TimeTracker.App.Controllers
 
             return View(model);
         }
-
+        //GET
         public ActionResult EmployeeEntry(int employeeid, int shiftid, DateTime date)
         {
 
-
-            return View();
+            var shift = db.Shifts.Find(shiftid);
+            //var team = db.Teams.Find(teamId);
+            var employee = db.Employees.Find(employeeid);
+            var model = new TimeEntryEmployeeVM()
+            {
+                Date = DateTime.Now,
+                ShiftName = shift.Name,
+                ShiftId = shift.Id,
+                TeamName = employee.MemberOf.Name,
+                TeamId = employee.MemberOf.Id,
+                EmployeeName = $"{employee.FirstName} {employee.LastName}",
+                EmployeeId = employee.Id,
+            };
+            return View(model);
         }
+
     }
 }

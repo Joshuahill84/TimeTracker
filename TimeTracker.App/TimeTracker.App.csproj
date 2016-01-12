@@ -267,6 +267,7 @@
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TimeEntryEmployeeVM.cs" />
     <Compile Include="Models\TimeEntryIndexVM.cs" />
     <Compile Include="Models\TimeEntryVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -361,6 +362,7 @@
     <Content Include="Views\TimeEntry\Index.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
     <Content Include="Views\CompletedTeam\Index.cshtml" />
+    <Content Include="Views\TimeEntry\EmployeeEntry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
