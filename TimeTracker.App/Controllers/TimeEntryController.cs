@@ -12,8 +12,13 @@ namespace TimeTracker.App.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: TimeEntry
-        public ActionResult Index(int teamId, int shiftId)
+        public ActionResult Index(int teamId, int? shiftId)
         {
+            if (!shiftId.HasValue)
+            {
+                shiftId = 2;
+            }
+
             var shift = db.Shifts.Find(shiftId);
             var team = db.Teams.Find(teamId);
             var model = new TimeEntryIndexVM
@@ -35,6 +40,7 @@ namespace TimeTracker.App.Controllers
 
             }
 
+            model.PossibleShifts = new SelectList(db.Shifts.ToList(),"Id", "Name", shiftId);
             return View(model);
         }
         //GET
@@ -47,7 +53,7 @@ namespace TimeTracker.App.Controllers
             var employee = db.Employees.Find(employeeid);
             var model = new TimeEntryEmployeeVM()
             {
-                Date = DateTime.Now,
+                Date = date.Date,
                 ShiftName = shift.Name,
                 ShiftId = shift.Id,
                 TeamName = employee.MemberOf.Name,

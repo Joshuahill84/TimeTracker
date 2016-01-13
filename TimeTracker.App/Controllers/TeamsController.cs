@@ -56,7 +56,7 @@ namespace TimeTracker.App.Controllers
                 var currentUser = db.Users.Find(userid);
 
                 team.Owner = currentUser;
-                currentUser.OwnerOf.Add(team);
+                currentUser.OwnerOf = team;
                 db.Teams.Add(team);
                 db.SaveChanges();
                 return RedirectToAction("Index");

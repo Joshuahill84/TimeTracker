@@ -5,15 +5,25 @@
 
 <h2>@Model.TeamName - @Model.ShiftName for @Model.Date.ToShortDateString()</h2>
 
+@using (Html.BeginForm("Index", "TimeEntry", FormMethod.Get))
+{
+    @Html.HiddenFor(model => model.TeamId)
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ShiftId, Model.PossibleShifts, new {@class = "form-control", onchange="this.form.submit()"})
+        </div>
+    </div>
+}
+
 <table class="table table-bordered table-striped">
     <tr>
-        <th>Name</th>
+        <th>Member Name</th>
     </tr>
     <tbody>
     @foreach (var person in Model.TeamMembers)
     {
         <tr>
-            <td>@Html.ActionLink(person.FullName, "EmployeeEntry", new { EmployeeId = person.Id, ShiftId = Model.ShiftId, Date= Model.Date})@person.FullName</td>
+            <td>@Html.ActionLink(person.FullName, "EmployeeEntry", new { EmployeeId = person.Id, ShiftId = Model.ShiftId, Date= Model.Date.ToShortDateString()})@person.FullName</td>
           
         </tr>
     }

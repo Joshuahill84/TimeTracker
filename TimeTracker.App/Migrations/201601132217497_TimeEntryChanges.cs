@@ -3,16 +3,14 @@ namespace TimeTracker.App.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class TimeEntry : DbMigration
+    public partial class TimeEntryChanges : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.TimeEntries", "Day", c => c.DateTime(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.TimeEntries", "Day");
         }
     }
 }

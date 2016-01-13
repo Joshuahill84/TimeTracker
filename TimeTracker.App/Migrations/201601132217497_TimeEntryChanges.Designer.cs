@@ -7,13 +7,13 @@ namespace TimeTracker.App.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class TimeEntry : IMigrationMetadata
+    public sealed partial class TimeEntryChanges : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TimeEntry));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(TimeEntryChanges));
         
         string IMigrationMetadata.Id
         {
-            get { return "201601082144568_timeentry"; }
+            get { return "201601132217497_TimeEntryChanges"; }
         }
         
         string IMigrationMetadata.Source

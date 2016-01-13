@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace TimeTracker.App.Models
 {
@@ -12,6 +13,7 @@ namespace TimeTracker.App.Models
         public int TeamId { get; set; }
         public DateTime Date { get; set; }
         public IList<TeamMemberVM> TeamMembers { get; set; } = new List<TeamMemberVM>();
+        public SelectList PossibleShifts { get; set; }
     }
 
     public class TeamMemberVM
