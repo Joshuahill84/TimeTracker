@@ -66,6 +66,8 @@ namespace TimeTracker.App.Models
 
         public System.Data.Entity.DbSet<TimeTracker.App.Models.Employee> Employees { get; set; }
 
+        public System.Data.Entity.DbSet<TimeTracker.App.Models.TimeEntry> TimeEntries { get; set; }
+
         public System.Data.Entity.DbSet<TimeTracker.App.Models.Team> Teams { get; set; }
 
         public System.Data.Entity.DbSet<TimeTracker.App.Models.Shift> Shifts { get; set; }

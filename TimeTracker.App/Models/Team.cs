@@ -51,7 +51,8 @@ namespace TimeTracker.App.Models
         Unknown = 0, 
         NoShow,
         SickLeave,
-        PTO
+        PTO,
+        Present 
     }
 
     public class Position : Entity

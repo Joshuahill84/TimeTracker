@@ -38,6 +38,7 @@ namespace TimeTracker.App.Controllers
             return View(model);
         }
         //GET
+        [HttpGet]
         public ActionResult EmployeeEntry(int employeeid, int shiftid, DateTime date)
         {
 
@@ -55,6 +56,43 @@ namespace TimeTracker.App.Controllers
                 EmployeeId = employee.Id,
             };
             return View(model);
+        }
+
+
+        [HttpPost]
+        public ActionResult EmployeeEntry(TimeEntryEmployeeVM entry)
+        {
+
+            var shift = db.Shifts.Find(entry.ShiftId);
+            var employee = db.Employees.Find(entry.EmployeeId);
+
+            //Look for an existing time entry for this day and shift for this employee.
+            var timeEntry = employee.TimeEntries.FirstOrDefault(te => te.Day.Date == entry.Date.Date && te.Shift == shift);
+
+            if (timeEntry == null) //there isn't an existing time entry, so create a new one.
+            {
+                timeEntry = new TimeEntry
+                {
+                    Employee = employee,
+                    Shift = shift,
+                    Day = entry.Date.Date
+                };
+
+                employee.TimeEntries.Add(timeEntry);
+            }
+
+
+            timeEntry.BillableHours = 0;
+            timeEntry.DayStatus = DayStatus.Present;
+            timeEntry.CheckInStatus = entry.CheckInTimeStatus;
+            timeEntry.CheckOutStatus = entry.CheckOutTimeStatus;
+
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index", new {shiftid = entry.ShiftId, teamid = entry.TeamId});
+
+
         }
 
     }
