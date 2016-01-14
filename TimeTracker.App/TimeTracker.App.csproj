@@ -265,11 +265,13 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CalendarReportVM.cs" />
     <Compile Include="Models\CompletedTeam.cs" />
     <Compile Include="Models\EmployeeEditVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ReportTimeEntryVM.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TimeEntryEmployeeVM.cs" />
     <Compile Include="Models\TimeEntryIndexVM.cs" />
@@ -367,6 +369,7 @@
     <Content Include="Views\Reports\Index.cshtml" />
     <Content Include="Views\CompletedTeam\Index.cshtml" />
     <Content Include="Views\TimeEntry\EmployeeEntry.cshtml" />
+    <Content Include="Views\Reports\CalendarReports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

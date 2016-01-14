@@ -1,0 +1,38 @@
+﻿@model  TimeTracker.App.Models.CalendarReportVM
+@{
+    ViewBag.Title = "Reports";
+}
+
+
+<h2>Calendar Reports</h2>
+
+
+@{
+    int curDOW = -1;
+}
+<table class="calendar table ">
+    @foreach (DateTime day in Model.EachDay(Model.Start, Model.End).OrderBy(x => x.DayOfWeek).ThenBy(x => x.Date))
+    {
+        if ((int)day.DayOfWeek != curDOW)
+        {
+            if (curDOW != -1)
+            {
+                @Html.Raw("</tr>")
+            }
+            @Html.Raw("<tr class='Week'>")
+            <td class="DayOfWeek">
+                @day.DayOfWeek
+            </td>
+
+            curDOW = (int)day.DayOfWeek;
+        }
+        <td class='@(day.Month == Model.Start.Month ? "TimeEntry" : "")'>
+            @if (day.Month == Model.Start.Month)
+            {
+                @day.ToString("dd")
+            }
+        </td>
+
+    }
+
+</table>

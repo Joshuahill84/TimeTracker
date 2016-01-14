@@ -8,7 +8,7 @@ namespace TimeTracker.App.Models
 {
     public class TimeEntryVM
     {
-        public string  User { get; set; }
+        public string User { get; set; }
         public Team TeamName { get; set; }
         public Employee Employees { get; set; }
         public DateTime Time { get; set; }
