@@ -41,3 +41,15 @@ table.calendar {
     padding: 5px;
     border: 1px black solid !important;
 }
+
+.Late {
+    background-color: #FDAAAC;
+}
+
+.OnTime {
+    background-color: #93D68F;
+}
+
+.Early {
+    background-color: #8192B7;
+}
