@@ -23,7 +23,7 @@
     @foreach (var person in Model.TeamMembers)
     {
         <tr>
-            <td>@Html.ActionLink(person.FullName, "EmployeeEntry", new { EmployeeId = person.Id, ShiftId = Model.ShiftId, Date= Model.Date.ToShortDateString()})@person.FullName</td>
+            <td>@Html.ActionLink(person.FullName, "EmployeeEntry", new { EmployeeId = person.Id, ShiftId = Model.ShiftId, Date= Model.Date.ToShortDateString()})</td>
           
         </tr>
     }
