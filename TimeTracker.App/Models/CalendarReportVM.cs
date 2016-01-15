@@ -23,6 +23,8 @@ namespace TimeTracker.App.Models
         }
 
         public IList<CalendarReportDetailVM> Details { get; set; } = new List<CalendarReportDetailVM>();
+        public string EmployeeName { get; set; }
+        public string TeamName { get; set; }
     }
 
     public class CalendarReportDetailVM

@@ -28,7 +28,8 @@ namespace TimeTracker.App.Controllers
             end = end ?? lastDayOfMonth;
 
             var db = new ApplicationDbContext();
-            var timeentries = db.Employees.Find(employeeid).TimeEntries
+            var employee = db.Employees.Find(employeeid);
+            var timeentries = employee.TimeEntries
                     .Where(x => x.Day > start && x.Day <= end);
 
             var details =
@@ -50,7 +51,9 @@ namespace TimeTracker.App.Controllers
             {
                 Start = start.GetValueOrDefault(),
                 End = end.GetValueOrDefault(),
-                Details = details
+                Details = details,
+                EmployeeName = employee.FirstName,
+                TeamName = employee.MemberOf.Name
             };
 
             return View(model);
