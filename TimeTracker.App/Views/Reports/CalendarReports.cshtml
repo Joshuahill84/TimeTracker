@@ -7,6 +7,7 @@
 
 
 <h2>Calendar Reports</h2>
+@*<h3>@Model.EmployeeName @Model.TeamName @Model.ShiftName</h3>*@
 
 
 @{
@@ -17,7 +18,7 @@
     {
         var details = Model.Details.Where(x => x.Day == day);
 
-        if ((int)day.DayOfWeek != curDOW)
+        if ((int) day.DayOfWeek != curDOW)
         {
             if (curDOW != -1)
             {
@@ -33,7 +34,7 @@
 
             </td>
 
-            curDOW = (int)day.DayOfWeek;
+            curDOW = (int) day.DayOfWeek;
         }
         <td class='@(day.Month == Model.Start.Month ? "TimeEntry" : "")   @(details.FirstOrDefault()?.CheckInStatus.ToString() ?? "")'>
             @if (day.Month == Model.Start.Month)
