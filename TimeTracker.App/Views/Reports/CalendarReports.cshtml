@@ -5,71 +5,101 @@
     ViewBag.Title = "Reports";
 }
 
-<br/>
-<h2>Calendar Reports</h2>
 
-<h3>@Model.EmployeeName @Model.TeamName </h3>
-@*<div class="form-group">
-    <div class="col-md-10">
-        @Html.DropDownListFor(model => Model.EmployeeName,????????????? ,new { @class = "form-control", onchange = "this.form.submit()" })
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>calender reports</h2>
+        <h3>@Model.EmployeeName @Model.TeamName </h3>
     </div>
-</div>*@
-<form>
-    <div class="col-md-4">
-        <input type="submit" value="<<< back a Month">
+</div>
+<div class="row">
 
-        @Model.Start.ToString("MMMM yyyy")
+    <div class="col-md-3">
 
-
-        <input type="submit" value="Next Month >>>">
-
-    </div>
-
-
-</form>
-
-
-@{
-    int curDOW = -1;
-}
-<table class="calendar table ">
-    @foreach (DateTime day in Model.EachDay(Model.Start, Model.End).OrderBy(x => x.DayOfWeek).ThenBy(x => x.Date))
-    {
-        var details = Model.Details.Where(x => x.Day == day);
-
-        if ((int) day.DayOfWeek != curDOW)
+        <h3>Team Members</h3>
+        @foreach (var teamMember in Model.TeamMembers.OrderBy(x => x.Value))
         {
-            if (curDOW != -1)
-            {
-                @Html.Raw("</tr>")
-            }
-            @Html.Raw("<tr class='Week'>")
-
-
-            //TODO as we loop through, check if this day is in the entries
-
-            <td class="DayOfWeek">
-                @day.DayOfWeek
-
-            </td>
-
-            curDOW = (int) day.DayOfWeek;
+            @Html.ActionLink(teamMember.Value, "CalendarReports", new { employeeId = teamMember.Key, monthyear = Model.Start })
+            <br />
         }
-        <td class='@(day.Month == Model.Start.Month ? "TimeEntry" : "")   @(details.FirstOrDefault()?.CheckInStatus.ToString() ?? "")'>
-            @if (day.Month == Model.Start.Month)
+
+    </div>
+    <div class="col-md-9">
+
+
+
+
+
+        <h4>
+            <a class="btn btn-success btn-sm" href="@Url.Action("CalendarReports", new { employeeId = Model.EmployeeId, monthyear = Model.Start.AddMonths(-1) })"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Prev</a>
+
+            @Model.Start.ToString("MMMM yyyy")
+
+            <a class="btn btn-success btn-sm" href="@Url.Action("CalendarReports", new { employeeId = Model.EmployeeId, monthyear = Model.Start.AddMonths(1) })">>Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+        </h4>
+
+
+        <br />
+
+        @{
+            int curDOW = -1;
+        }
+        <table class="calendar table ">
+            @foreach (DateTime day in Model.EachDay(Model.Start, Model.End).OrderBy(x => x.DayOfWeek).ThenBy(x => x.Date))
             {
+                var details = Model.Details.Where(x => x.Day == day);
 
-                @day.ToString("dd")
-                <span>Entries = @details.Count()</span>
+                if ((int)day.DayOfWeek != curDOW)
+                {
+                    if (curDOW != -1)
+                    {
+                        @Html.Raw("</tr>")
+                    }
+                    @Html.Raw("<tr class='Week'>")
+
+
+                    //TODO as we loop through, check if this day is in the entries
+
+                    <td class="DayOfWeek">
+                        @day.DayOfWeek
+
+                    </td>
+
+                    curDOW = (int)day.DayOfWeek;
+                }
+                <td class='@(day.Month == Model.Start.Month ? "TimeEntry" : "")   @(details.FirstOrDefault()?.CheckInStatus.ToString() ?? "")'>
+                    @if (day.Month == Model.Start.Month)
+                    {
+
+                        @day.ToString("dd")
+                        <span>Entries = @details.Count()</span>
+                    }
+                </td>
+
             }
-        </td>
+        </table>
+        <fieldset>
+            <legend>Employee Status:</legend>
+            <div class="foo" style="background-color: #FDAAAC;">Late </div>
+            <div class="foo" style="background-color: #93D68F;">OnTime</div>
+            <div class="foo" style="background-color: #8192B7;">Early</div>
+        </fieldset>
 
-    }
-</table>
-    <fieldset>
-        <legend>Employee Status:</legend>
-        <div class="foo" style="background-color: #FDAAAC;">Late </div>
-        <div class="foo" style="background-color: #93D68F;">OnTime</div>
-        <div class="foo" style="background-color: #8192B7;">Early</div>
-    </fieldset>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

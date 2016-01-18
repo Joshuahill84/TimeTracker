@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.SqlServer;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using TimeTracker.App.Migrations;
 using TimeTracker.App.Models;
 
 namespace TimeTracker.App.Controllers
@@ -17,17 +20,20 @@ namespace TimeTracker.App.Controllers
             return View();
         }
 
-        public ActionResult CalendarReports(int employeeid, DateTime? start, DateTime? end)
+        public ActionResult CalendarReports(int? employeeid, DateTime? monthyear)
         {
-            var date = DateTime.Now;
-            var firstDayOfMonth = new DateTime(date.Year, date.Month, 1);
-            var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
+            var date = monthyear ?? DateTime.Now;
+            var start = new DateTime(date.Year, date.Month, 1);
+            var end = start.AddMonths(1).AddDays(-1);
 
-
-            start = start ?? firstDayOfMonth;
-            end = end ?? lastDayOfMonth;
 
             var db = new ApplicationDbContext();
+            var currentUser = db.Users.Find(User.Identity.GetUserId()); //ApplicationUser
+            if (employeeid == null)
+            {
+                employeeid = currentUser.OwnerOf.Employees.OrderBy(x => x.FirstName).ThenBy(x => x.LastName).FirstOrDefault()?.Id ?? 1; //NOT 1 but the id of the FIRST() team member currentUser.OwnerOf.Name.First();
+            }
+
             var employee = db.Employees.Find(employeeid);
             var timeentries = employee.TimeEntries
                     .Where(x => x.Day > start && x.Day <= end);
@@ -49,12 +55,16 @@ namespace TimeTracker.App.Controllers
 
             var model = new CalendarReportVM
             {
-                Start = start.GetValueOrDefault(),
-                End = end.GetValueOrDefault(),
+                Start = start,
+                End = end,
                 Details = details,
-                EmployeeName = employee.FirstName,
-                TeamName = employee.MemberOf.Name
+                EmployeeId = employee.Id,
+                EmployeeName = $"{employee.FirstName} {employee.LastName}",
+                TeamName = employee.MemberOf.Name,
+                TeamMembers = currentUser.OwnerOf.Employees
+                        .Select(x => new { Id = x.Id, FullName = x.FirstName + " " + x.LastName }).ToDictionary(x => x.Id, x => x.FullName)
             };
+
 
             return View(model);
         }

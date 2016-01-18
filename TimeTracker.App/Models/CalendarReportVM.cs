@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace TimeTracker.App.Models
@@ -25,6 +26,8 @@ namespace TimeTracker.App.Models
         public IList<CalendarReportDetailVM> Details { get; set; } = new List<CalendarReportDetailVM>();
         public string EmployeeName { get; set; }
         public string TeamName { get; set; }
+        public Dictionary<int,string> TeamMembers { get; set; } = new Dictionary<int, string>();
+        public int EmployeeId { get; set; }
     }
 
     public class CalendarReportDetailVM
