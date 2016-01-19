@@ -22,9 +22,14 @@
     <tbody>
     @foreach (var person in Model.TeamMembers)
     {
+
         <tr>
-            <td>@Html.ActionLink(person.FullName, "EmployeeEntry", new { EmployeeId = person.Id, ShiftId = Model.ShiftId, Date= Model.Date.ToShortDateString()})</td>
-          
+            <td>
+                <h3>@person.FullName</h3></td>
+               @*@Html.ActionLink(person.FullName, "EmployeeEntry", new { EmployeeId = person.Id, ShiftId = Model.ShiftId, Date = Model.Date.ToShortDateString() })*@
+            <td>
+                <button type="button" class="btn btn-primary btn-md">Update Status</button>
+            </td>
         </tr>
     }
     </tbody>
