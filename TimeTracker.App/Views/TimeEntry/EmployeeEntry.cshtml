@@ -1,4 +1,5 @@
-﻿@model TimeTracker.App.Models.TimeEntryEmployeeVM
+﻿@using TimeTracker.App.Migrations
+@model TimeTracker.App.Models.TimeEntryEmployeeVM
 
 @{
     ViewBag.Title = "EmployeeEntry";
@@ -24,7 +25,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
+            <div class="col-md-10">
                 @Html.DisplayFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
@@ -58,7 +59,9 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "TimeEntry", new { teamid = Model.TeamId }, null)
+
+
 </div>
 
 @section Scripts {
