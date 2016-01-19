@@ -10,71 +10,85 @@
 <h2>Employee List</h2>
 
 <p>
-    @Html.ActionLink("Create New Employee", "Create", null, new { @class ="btn btn-primary"})
+    @Html.ActionLink("Create New Employee", "Create", null, new { @class = "btn btn-primary" })
 </p>
 
 
-<table class="table">
+<table class="table" id="employeeTable">
+    <thead>
     <tr>
         <th>
-Employee Number
+            Employee Number
         </th>
         <th>
-First Name
+            First Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            Last Name
         </th>
-        <th>Team Name
+        <th>
+            Team Name
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </th>*@
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>*@
         @*<th>
-            @Html.DisplayNameFor(model => model.ModifiedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedOn)
-        </th>*@
+                    @Html.DisplayNameFor(model => model.ModifiedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedOn)
+                </th>*@
         <th>
         </th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemberOf.Name)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedOn)
-        </td>*@
-        @*<td>
-            @Html.DisplayFor(modelItem => item.ModifiedBy)
-        </td>*@
-        @*<td>
-            @Html.DisplayFor(modelItem => item.ModifiedOn)
-        </td>*@
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
-            @Html.ActionLink("Delete", "Delete", new {id = item.Id})
-        </td>
-    </tr>
-}
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberOf.Name)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ModifiedBy)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ModifiedOn)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
+@section scripts{
+    <script src="http://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+    <link href="http://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet"/>
+    <script>
+        $(document).ready(function () {
+            $('#employeeTable').DataTable();
+        });
+    </script>
+}
