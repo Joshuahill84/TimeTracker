@@ -26,10 +26,7 @@
         <tr>
             <td>
                 <h4>@person.FullName</h4></td>
-            <td> @Html.ActionLink(person.FullName, "EmployeeEntry", new { EmployeeId = person.Id, ShiftId = Model.ShiftId, Date = Model.Date.ToShortDateString() }, new { @class = "btn btn-primary" })</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-md">Update Status</button>
-            </td>
+            <td> @Html.ActionLink("Update Clock in Status", "EmployeeEntry", new { EmployeeId = person.Id, ShiftId = Model.ShiftId, Date = Model.Date.ToShortDateString() }, new { @class = "btn btn-primary" })</td>
         </tr>
     }
     </tbody>
