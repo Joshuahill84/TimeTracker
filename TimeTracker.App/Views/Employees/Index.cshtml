@@ -10,22 +10,22 @@
 <h2>Employee List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Employee", "Create", null, new { @class ="btn btn-primary"})
 </p>
+
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.EmployeeNumber)
+Employee Number
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+First Name
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LastName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MemberOf.Name)
+        <th>Team Name
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.CreatedBy)
