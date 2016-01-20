@@ -39,7 +39,13 @@ namespace TimeTracker.App.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new EmployeeEditVM
+            {
+                SelectedTeamId = 0,
+                AvailableTeams = new SelectList(db.Teams.ToList(), "Id", "Name")
+            };
+
+            return View(model);
         }
 
         // POST: Employees/Create
@@ -47,16 +53,35 @@ namespace TimeTracker.App.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeNumber,FirstName,LastName")] Employee employee)
+        public ActionResult Create(EmployeeEditVM model)
         {
             if (ModelState.IsValid)
             {
+                var currentTeam = db.Teams.Find(model.SelectedTeamId);
+                var alreadyExists = currentTeam.Employees.Any(x => x.EmployeeNumber == model.EmployeeNumber);
+                if (alreadyExists )
+                {
+                    ModelState.AddModelError("EmployeeNumber", "Person Already Exists with that Employee Number on the Team.");
+                    model.AvailableTeams = new SelectList(db.Teams.ToList(), "Id", "Name");
+                    return View(model);
+                }
+
+                 var   employee = new Employee
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    EmployeeNumber = model.EmployeeNumber,
+                    MemberOf = currentTeam
+                };
+
                 db.Employees.Add(employee);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
-            return View(employee);
+            model.AvailableTeams = new SelectList(db.Teams.ToList(), "Id", "Name");
+            return View(model);
         }
 
         // GET: Employees/Edit/5
@@ -105,6 +130,8 @@ namespace TimeTracker.App.Controllers
 
                 return RedirectToAction("Index");
             }
+
+            model.AvailableTeams = new SelectList(db.Teams.ToList(), "Id", "Name");
             return View(model);
         }
 
