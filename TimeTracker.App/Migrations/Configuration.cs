@@ -1,3 +1,5 @@
+using TimeTracker.App.Models;
+
 namespace TimeTracker.App.Migrations
 {
     using System;
@@ -27,6 +29,22 @@ namespace TimeTracker.App.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.PayCycles.AddOrUpdate(pc => pc.Name,
+                new PayCycle { Name = "Weekly"},
+                new PayCycle { Name = "BiWeekly"},
+                new PayCycle { Name = "Monthly"},
+                new PayCycle { Name = "Semi Monthly"},
+                new PayCycle { Name = "Annual"}
+                );
+
+            context.Shifts.AddOrUpdate(pc => pc.Name,
+              new Shift() { Name = "Night Shift" },
+              new Shift { Name = "Day Shift" },
+              new Shift { Name = "Morning" },
+              new Shift { Name = "Evening" },
+              new Shift { Name = "Part Time" }
+              );
         }
     }
 }
