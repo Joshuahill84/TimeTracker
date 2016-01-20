@@ -20,7 +20,7 @@
         <th>Member Name</th>
     </tr>
     <tbody>
-    @foreach (var person in Model.TeamMembers)
+    @foreach (var person in Model.TeamMembers.OrderBy(x => x.FullName))
     {
 
         <tr>
