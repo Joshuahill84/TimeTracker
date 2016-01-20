@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using TimeTracker.App.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -23,6 +24,13 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Lookup", "CalendarReports", "Reports")</li>
+                    <li>@Html.ActionLink("View", "Index", "Employees")</li>
+                    <li>@Html.ActionLink("Track", "Index", "TimeEntry",new {teamid = ViewBag.TeamId}, null)</li>
+
+
+
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

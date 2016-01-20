@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using TimeTracker.App.Models;
 
 namespace TimeTracker.App.Controllers
@@ -12,7 +13,7 @@ namespace TimeTracker.App.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: TimeEntry
-        public ActionResult Index(int teamId, int? shiftId)
+        public ActionResult Index( int? shiftId)
         {
             if (!shiftId.HasValue)
             {
@@ -20,7 +21,9 @@ namespace TimeTracker.App.Controllers
             }
 
             var shift = db.Shifts.Find(shiftId);
-            var team = db.Teams.Find(teamId);
+            string currentUserId = User.Identity.GetUserId();
+            var currentUser = db.Users.Find(currentUserId);
+            var team = currentUser.OwnerOf;
             var model = new TimeEntryIndexVM
             {
                 Date = DateTime.Now,
