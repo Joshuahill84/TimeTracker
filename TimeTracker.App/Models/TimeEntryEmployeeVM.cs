@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TimeTracker.App.Models
 {
@@ -8,6 +9,7 @@ namespace TimeTracker.App.Models
         public string ShiftName { get; set; }
         public string TeamName { get; set; }
         public int TeamId { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
         public string FullName { get; set; }
         public TimeClockStatus CheckInTimeStatus { get; set; }

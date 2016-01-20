@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.0/fullcalendar.min.css" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -27,7 +28,7 @@
                     <li>@Html.ActionLink("Track", "Index", "TimeEntry", new { teamid = ViewBag.TeamId }, null)</li>
                     <li>@Html.ActionLink("Reports", "CalendarReports", "Reports")</li>
                     <li>@Html.ActionLink("View", "Index", "Employees")</li>
-                    
+
 
 
 
@@ -39,16 +40,21 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr/>
-
-        <footer>
-            <p>&copy; @DateTime.Now.Year - TimeTracker</p>
-           
-           
-        </footer>
     </div>
+    <footer>
+        <ul class="container">
 
-    @Scripts.Render("~/bundles/jquery")
+            <a target="_blank" href="https://github.com/Joshuahill84"><i class="fa fa-github fa-2x"></i></a>
+            <a target="_blank" href="https://www.linkedin.com/in/josh-hill-bb8966a"><i class="fa fa-linkedin-square fa-2x"></i></a>
+            <a target="_blank" href="tel://1-555-555-5555"><i class="fa fa-phone-square fa-2x"></i></a>
+            <a target="_blank" href="mailto:joshuahill84@gmail.com"><i class="fa fa-envelope-square fa-2x"></i></a>
+            <p>&copy; @DateTime.Now.Year - TimeTracker</p>
+        </ul>
+
+    </footer>
+
+
+@Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

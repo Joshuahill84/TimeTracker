@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,8 +41,11 @@ namespace TimeTracker.App.Models
 
     public enum TimeClockStatus
     {
-        UnKnown = 0,
+
+        Unknown = 0,
+
         Early,
+        [Display(Name = "On Time")]
         OnTime,
         Late,
     }
@@ -50,6 +54,7 @@ namespace TimeTracker.App.Models
     {
         Unknown = 0, 
         NoShow,
+        [Display(Name = "Sick Leave")]
         SickLeave,
         PTO,
         Present 

@@ -62,5 +62,13 @@ table.calendar {
     border-style: solid;
     border-color: rgba(0,0,0,.2);
 }
-           
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.body-content {
+    flex: 1;
+}
