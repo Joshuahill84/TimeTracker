@@ -263,6 +263,10 @@
     <Compile Include="Migrations\201601132217497_TimeEntryChanges.Designer.cs">
       <DependentUpon>201601132217497_TimeEntryChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601201647127_CreateModifyDatesNullable.cs" />
+    <Compile Include="Migrations\201601201647127_CreateModifyDatesNullable.Designer.cs">
+      <DependentUpon>201601201647127_CreateModifyDatesNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CalendarReportVM.cs" />
@@ -404,6 +408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601132217497_TimeEntryChanges.resx">
       <DependentUpon>201601132217497_TimeEntryChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601201647127_CreateModifyDatesNullable.resx">
+      <DependentUpon>201601201647127_CreateModifyDatesNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

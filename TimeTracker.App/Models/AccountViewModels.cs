@@ -79,6 +79,10 @@ namespace TimeTracker.App.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string NewTeamName { get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -151,10 +151,22 @@ namespace TimeTracker.App.Controllers
         {
             if (ModelState.IsValid)
             {
+                var db =  new ApplicationDbContext();
+                var newTeam = db.Teams.FirstOrDefault(t=> t.Name == model.NewTeamName);
+                if (newTeam != null)
+                {
+                    ModelState.AddModelError("NewTeamName", "That team name is already taken.");
+                    return View(model);
+                }
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    newTeam = new Team() { Name = model.NewTeamName, Owner =  db.Users.Find(user.Id)};
+                    db.Teams.Add(newTeam);
+                    await db.SaveChangesAsync();
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
