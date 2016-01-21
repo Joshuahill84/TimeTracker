@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace TimeTracker.App.Models
@@ -19,7 +20,9 @@ namespace TimeTracker.App.Models
     public class TeamMemberVM
     {
         public string FullName { get; set; }
+        [Display(Name = "Check In Time")]
         public TimeClockStatus CheckInTimeStatus { get; set; }
+        [Display(Name = "Check Out Time")]
         public TimeClockStatus CheckOutTimeStatus { get; set; }
         public int Id { get; set; }
     }

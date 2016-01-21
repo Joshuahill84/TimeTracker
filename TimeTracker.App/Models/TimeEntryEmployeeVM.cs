@@ -12,7 +12,9 @@ namespace TimeTracker.App.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
         public string FullName { get; set; }
+        [Display(Name = "Check In")]
         public TimeClockStatus CheckInTimeStatus { get; set; }
+        [Display(Name = "Check Out")]
         public TimeClockStatus CheckOutTimeStatus { get; set; }
         public int TimeEntryId { get; set; }
         public int EmployeeId { get; set; }
