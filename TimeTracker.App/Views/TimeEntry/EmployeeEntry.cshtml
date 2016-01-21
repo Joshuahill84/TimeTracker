@@ -31,9 +31,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CheckInTimeStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CheckInTimeStatus, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.CheckInTimeStatus,  new { @class = "form-control" } )
+                @Html.EnumDropDownListFor(model => model.CheckInTimeStatus, new {@class = "form-control"})
 
 
             </div>
@@ -41,9 +41,9 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CheckOutTimeStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CheckOutTimeStatus, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.CheckOutTimeStatus, new { @class = "form-control" } )
+                @Html.EnumDropDownListFor(model => model.CheckOutTimeStatus, new {@class = "form-control"})
 
 
             </div>

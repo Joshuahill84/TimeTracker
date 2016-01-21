@@ -10,13 +10,13 @@
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-        <li>
+        @*<li>
             <a href="mailto:joshuahill84@gmail.com"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a>
 
         </li>
         <li>
             <a href="tel://1-555-555-5555"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></a>
-        </li>
+        </li>*@
     </ul>
     }
 }

@@ -12,7 +12,7 @@
         <div class="card card-block">
             <img src='~/Content/image/Track.jpg' class="img-responsive img-rounded" alt="Team"/>
             <h3 class="card-title">Track your Team</h3>
-            <p class="card-text">update team schedule here</p>
+            <p class="card-text">Update team schedule here</p>
             @Html.ActionLink("Track", "Index", "TimeEntry", new {teamid = ViewBag.MyTeamId}, new {@class = "btn btn-primary"})
         </div>
     </div>
@@ -20,7 +20,7 @@
         <div class="card card-block">
             <img src='~/Content/image/Report.jpg' class="img-responsive img-rounded" alt="Report" />
             <h3 class="card-title">Generate Report</h3>
-            <p class="card-text">generate team stats</p>
+            <p class="card-text">Review team stats</p>
             @Html.ActionLink("Reports", "CalendarReports", "Reports", null, new {@class = "btn btn-primary"})
         </div>
     </div>
@@ -28,7 +28,7 @@
         <div class="card card-block">
             <img src='~/Content/image/Team.jpg' class="img-responsive img-rounded" alt="Track" />
             <h3 class="card-title">View Employees</h3>
-            <p class="card-text">view a list of Employees and Teams</p>
+            <p class="card-text">View a list of employees and teams</p>
             @Html.ActionLink("Employees", "Index", "Employees", null, new {@class = "btn btn-primary"})
         </div>
     </div>
