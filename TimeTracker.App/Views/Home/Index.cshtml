@@ -5,31 +5,33 @@
 }
 
 
-
+<br/>
 <div class="row">
-    
+
     <div class="col-sm-4">
         <div class="card card-block">
+            <img src='~/Content/image/Track.jpg' class="img-responsive img-rounded" alt="Team"/>
             <h3 class="card-title">Track your Team</h3>
-            <p class="card-text">update team schedual here</p>
+            <p class="card-text">update team schedule here</p>
             @Html.ActionLink("Track", "Index", "TimeEntry", new {teamid = ViewBag.MyTeamId}, new {@class = "btn btn-primary"})
         </div>
     </div>
     <div class="col-sm-4">
         <div class="card card-block">
-            <h3 class="card-title">Lookup Report Data</h3>
-            <p class="card-text">overview current team stats on schedual</p>
+            <img src='~/Content/image/Report.jpg' class="img-responsive img-rounded" alt="Report" />
+            <h3 class="card-title">Generate Report</h3>
+            <p class="card-text">generate team stats</p>
             @Html.ActionLink("Reports", "CalendarReports", "Reports", null, new {@class = "btn btn-primary"})
         </div>
     </div>
     <div class="col-sm-4">
         <div class="card card-block">
-            <h3 class="card-title">View a Team</h3>
-            <p class="card-text">view your team of Employee's here</p>
-            @Html.ActionLink("View", "Index", "Employees", null, new { @class = "btn btn-primary" })
+            <img src='~/Content/image/Team.jpg' class="img-responsive img-rounded" alt="Track" />
+            <h3 class="card-title">View Employees</h3>
+            <p class="card-text">view a list of Employees and Teams</p>
+            @Html.ActionLink("Employees", "Index", "Employees", null, new {@class = "btn btn-primary"})
         </div>
     </div>
 </div>
 
 
-<hr />
